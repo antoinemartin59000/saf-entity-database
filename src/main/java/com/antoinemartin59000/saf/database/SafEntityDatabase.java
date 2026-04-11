@@ -19,8 +19,8 @@ import java.util.Map;
 import java.util.StringJoiner;
 import java.util.function.Function;
 
+import com.antoinemartin59000.saf.common.Pair;
 import com.antoinemartin59000.saf.entity.Inflector;
-import com.antoinemartin59000.saf.entity.Pair;
 import com.antoinemartin59000.saf.entity.SafEntity;
 import com.antoinemartin59000.saf.entity.SafEntitySearch;
 

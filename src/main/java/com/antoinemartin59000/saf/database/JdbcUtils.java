@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Map.Entry;
 import java.util.StringJoiner;
 
-import com.antoinemartin59000.saf.entity.Pair;
+import com.antoinemartin59000.saf.common.Pair;
 
 public final class JdbcUtils {
 

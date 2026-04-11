@@ -5,7 +5,7 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.antoinemartin59000.saf</groupId>
-	<artifactId>database</artifactId>
+	<artifactId>entity-database</artifactId>
 	<version>1.0-SNAPSHOT</version>
 	<packaging>jar</packaging>
 

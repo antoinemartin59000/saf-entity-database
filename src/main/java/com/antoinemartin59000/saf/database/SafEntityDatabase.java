@@ -24,7 +24,7 @@ import com.antoinemartin59000.saf.entity.Pair;
 import com.antoinemartin59000.saf.entity.SafEntity;
 import com.antoinemartin59000.saf.entity.SafEntitySearch;
 
-public class EntityDatabase<T extends SafEntity, S extends SafEntitySearch> {
+public class SafEntityDatabase<T extends SafEntity, S extends SafEntitySearch> {
 
     @FunctionalInterface
     private interface Setter<T, U> {
@@ -40,7 +40,7 @@ public class EntityDatabase<T extends SafEntity, S extends SafEntitySearch> {
     private final Map<String, Function<S, Collection<?>>> includingValuesGetter;
     private final List<Pair<String, Function<T, ?>>> upsertColumns;
 
-    public EntityDatabase(Class<T> safEntityClass) {
+    public SafEntityDatabase(Class<T> safEntityClass) {
         this.safEntityClass = safEntityClass;
         this.tableName = getPluralSnakeCaseName(safEntityClass);
         this.columnNames = getFieldNamesInSnakeCase(safEntityClass);

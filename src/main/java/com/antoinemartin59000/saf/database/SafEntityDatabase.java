@@ -185,7 +185,7 @@ public class SafEntityDatabase<T extends SafEntity, S extends SafEntitySearch> {
         }
     }
 
-    public void update(Connection connection, T entity) {
+    public boolean update(Connection connection, T entity) {
 
         StringJoiner columns = new StringJoiner(" = ?, ", "", " = ?").setEmptyValue("");
         upsertColumns.stream().map(Pair::first).forEach(columns::add);
@@ -202,31 +202,22 @@ public class SafEntityDatabase<T extends SafEntity, S extends SafEntitySearch> {
 
             JdbcUtils.setLong(pst, i++, entity.getId());
 
-            pst.executeUpdate();
+            return pst.executeUpdate() > 0;
         } catch (SQLException e) {
             throw new RuntimeException("TODO - " + this.tableName, e);
         }
 
     }
 
-    public void delete(Connection connection, Long id) {
-        // TODO check if batching a single delete makes a difference worth considering
-        delete(connection, Arrays.asList(id));
-    }
-
-    public void delete(Connection connection, Iterable<Long> ids) {
+    public boolean delete(Connection connection, Long id) {
 
         String sql = "DELETE FROM " + tableName + " where id = ?";
 
         try (PreparedStatement pst = connection.prepareStatement(sql)) {
 
-            for (Long id : ids) {
-                JdbcUtils.setLong(pst, 1, id);
-                pst.addBatch();
-            }
+            JdbcUtils.setLong(pst, 1, id);
 
-            pst.executeBatch();
-
+            return pst.executeUpdate() > 0;
         } catch (SQLException e) {
             throw new RuntimeException("TODO - table: " + tableName, e);
         }
